@@ -4,7 +4,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
 # Initialize variables
 data_list = []
@@ -56,7 +56,7 @@ top_5_indices = np.argsort(y_pred_probs, axis=1)[:, -5:][:, ::-1]
 
 # Load player quality scores
 quality_scores_df = pd.read_csv('player_quality_scores.csv')
-quality_scores_dict = dict(zip(quality_scores_df['player_name'], quality_scores_df['quality_score']))
+quality_scores_dict = dict(zip(quality_scores_df['player_name'], quality_scores_df['normalized_score']))
 
 # Get unique player names
 unique_players = np.array(model.classes_)
@@ -71,7 +71,7 @@ for i in range(len(X_test)):
         quality_score = quality_scores_dict.get(player_name, 1)
         adjusted_prob = prob * quality_score
         
-        print(f"{rank+1}. {player_name} - Adjusted Probability: {adjusted_prob:.3f} (Quality Score: {quality_score})")
+        print(f"{rank+1}. {player_name} - Adjusted Probability: {adjusted_prob:.3f} (Quality Score: {quality_score}) (Probability: {prob})")
 
 
 # Evaluate and display the model's accuaracy, precision, recall, F1-score
@@ -79,10 +79,9 @@ accuracy = accuracy_score(y_test, y_pred)
 precision = precision_score(y_test, y_pred, average='weighted', zero_division=0)
 recall = recall_score(y_test, y_pred, average='weighted', zero_division=0)
 f1 = f1_score(y_test, y_pred, average='weighted')
-conf_matrix = confusion_matrix(y_test, y_pred)
 
-print(f'Model Accuracy: {accuracy:.2f}')
 print(f"\nModel Statistics:")
+print(f'Model Accuracy: {accuracy:.2f}')
 print(f"Precision (Weighted): {precision:.3f}")
 print(f"Recall (Weighted): {recall:.3f}")
 print(f"F1-Score (Weighted): {f1:.3f}")
