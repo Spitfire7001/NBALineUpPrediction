@@ -27,12 +27,7 @@ for file_path in csv_files:
             rebounds_home, rebounds_away = row['reb_home'], row['reb_visitor']
             assists_home, assists_away = row['ast_home'], row['ast_visitor']
             blocked_shots_home, blocked_shots_away = row['blk_home'], row['blk_visitor']
-
-            points_home, points_away = row['pts_home'], row['pts_visitor']
-            ast_home, ast_away = row['ast_home'], row['ast_visitor']
-            reb_home, reb_away = row['reb_home'], row['reb_visitor']
-
-            
+       
             for player in home_players:
                 player_stats[player]['three_pointers'] += three_pointers_home
                 player_stats[player]['two_pointers'] += two_pointers_home
