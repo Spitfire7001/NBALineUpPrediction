@@ -61,9 +61,9 @@ for train_file, test_file in zip(train_files, test_files):
     
     # Calculate accuaracy, precision, recall, and F1 score
     accuracy = accuracy_score(testing_data_Y, y_pred)
-    precision = precision_score(testing_data_Y, y_pred, average='micro')
-    recall = recall_score(testing_data_Y, y_pred, average='micro')
-    f1 = f1_score(testing_data_Y, y_pred, average='micro')
+    precision = precision_score(testing_data_Y, y_pred, average='weighted')
+    recall = recall_score(testing_data_Y, y_pred, average='weighted')
+    f1 = f1_score(testing_data_Y, y_pred, average='weighted')
 
     # Output the results
     print(f"Accuracy: {accuracy}")
