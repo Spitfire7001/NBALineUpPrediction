@@ -3,7 +3,7 @@ import glob
 import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from sklearn.preprocessing import LabelEncoder
 
 team_columns = ["home_team", "away_team"]
@@ -58,9 +58,20 @@ for train_file, test_file in zip(train_files, test_files):
     model = RandomForestClassifier(n_estimators=100, random_state=42, n_jobs=3)
     model.fit(training_data_X, training_data_Y)
     y_pred = model.predict(testing_data_X)
-    accuracy = accuracy_score(testing_data_Y, y_pred)
     
-    print(f"Trained on {train_file}, tested on {test_file} - Accuracy: {accuracy:.2f}")
+    # Calculate accuaracy, precision, recall, and F1 score
+    accuracy = accuracy_score(testing_data_Y, y_pred)
+    precision = precision_score(testing_data_Y, y_pred, average='micro')
+    recall = recall_score(testing_data_Y, y_pred, average='micro')
+    f1 = f1_score(testing_data_Y, y_pred, average='micro')
+
+    # Output the results
+    print(f"Accuracy: {accuracy}")
+    print(f"Precision: {precision}")
+    print(f"Recall: {recall}")
+    print(f"F1 Score: {f1}")
+    
+    print(f"Trained on {train_file}, tested on {test_file}")
 
     # Collect results
     for i, row in testing_data.iterrows():
