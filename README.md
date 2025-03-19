@@ -1,7 +1,7 @@
 # NBA Lineup Prediction Project
 The overall purpose of this project is to predict an optimal 5th member for the home team in an NBA game. 
 In order to achieve this goal, our group leverged label encoding and a random forest classifer.
-More information can be found in the report present in this repositorty at this [link]().
+More information can be found in the report present in this repositorty at this [link](https://github.com/Spitfire7001/NBALineUpPrediction/blob/main/NBA%20Line%20Prediction%20Report%20-%20Group%201.pdf).
 The following information will be the process to run this model yourself in your own python virtual environment.
 
 ## Installation Procedure
